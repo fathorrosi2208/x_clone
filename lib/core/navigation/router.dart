@@ -20,9 +20,11 @@ import 'package:x_clone/ui/home/home_page.dart';
 import 'package:go_router/go_router.dart';
 import 'package:flutter/material.dart';
 import 'package:x_clone/ui/login/login_page.dart';
+import 'package:x_clone/ui/profile/profile_page.dart';
 import 'package:x_clone/ui/register/register_page.dart';
 import 'package:x_clone/ui/splash/splash_page.dart';
 import 'package:x_clone/bloc/auth_bloc.dart';
+import 'package:x_clone/ui/tweet/add_tweet_page.dart';
 
 /// Global router configuration
 final router = GoRouter(
@@ -55,16 +57,24 @@ final router = GoRouter(
       builder: (context, state) => const SplashPage(),
     ),
     GoRoute(
-      path: '/navbar',
-      builder: (context, state) => const Navbar(),
-    ),
-    GoRoute(
       path: '/login',
       builder: (context, state) => const LoginPage(),
     ),
     GoRoute(
       path: '/register',
       builder: (context, state) => const RegisterPage(),
+    ),
+    GoRoute(
+      path: '/navbar',
+      builder: (context, state) => const Navbar(),
+    ),
+    GoRoute(
+      path: '/add-tweet',
+      builder: (context, state) => const AddTweetPage(),
+    ),
+    GoRoute(
+      path: '/profile',
+      builder: (context, state) => const ProfilePage(),
     ),
     GoRoute(
       path: '/home',

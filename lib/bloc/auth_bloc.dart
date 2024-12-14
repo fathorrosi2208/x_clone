@@ -9,7 +9,7 @@ part 'auth_event.dart';
 part 'auth_state.dart';
 
 class AuthBloc extends Bloc<AuthEvent, AuthState> {
-  final IAuthRepository _authRepository;
+  final AuthRepository _authRepository;
   StreamSubscription<UserModel?>? _userSubscription;
 
   AuthBloc(this._authRepository) : super(const AuthState.initial()) {

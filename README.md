@@ -1,5 +1,11 @@
 # x_clone
 
+![Mockup](mockup/mockup.png)
+
+![Mockup1](mockup/mockup1.png)
+
+![Mockup2](mockup/mockup2.png)
+
 A new Flutter project.
 
 ## Getting Started

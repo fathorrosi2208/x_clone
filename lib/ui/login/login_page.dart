@@ -39,30 +39,20 @@ class _LoginPageState extends State<LoginPage> {
   Widget build(BuildContext context) {
     return BlocListener<AuthBloc, AuthState>(
       listener: (context, state) {
-        if (state is Authenticated) {
-          context.go('/navbar');
-        } else if (state is Error) {
-          ScaffoldMessenger.of(context).showSnackBar(
-            SnackBar(
-              content: Text(state.message),
-              backgroundColor: Colors.red,
-            ),
-          );
-        }
-        // state.maybeMap(
-        //   error: (error) {
-        //     ScaffoldMessenger.of(context).showSnackBar(
-        //       SnackBar(
-        //         content: Text(error.message),
-        //         backgroundColor: Colors.red,
-        //       ),
-        //     );
-        //   },
-        //   authenticated: (_) {
-        //     context.go('/home');
-        //   },
-        //   orElse: () {},
-        // );
+        state.maybeMap(
+          error: (error) {
+            ScaffoldMessenger.of(context).showSnackBar(
+              SnackBar(
+                content: Text(error.message),
+                backgroundColor: Colors.red,
+              ),
+            );
+          },
+          authenticated: (_) {
+            context.go('/navbar');
+          },
+          orElse: () {},
+        );
       },
       child: ResponsiveScaffold(
         title: "Login Page",

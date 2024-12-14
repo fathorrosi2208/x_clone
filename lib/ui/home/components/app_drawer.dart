@@ -32,7 +32,9 @@ class AppDrawer extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             // Drawer header with app branding
-            _buildHeader(context),
+            SizedBox(
+                width: context.navigationDrawerWidth,
+                child: _buildHeader(context)),
 
             // Navigation items
             Expanded(
@@ -113,28 +115,54 @@ class AppDrawer extends StatelessWidget {
   }
 
   Widget _buildHeader(BuildContext context) {
-    return DrawerHeader(
-      decoration: BoxDecoration(
-        color: context.colorScheme.primaryContainer,
-      ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Text(
-            'My App',
-            style: context.textTheme.headlineMedium?.responsive(
-              context,
-              min: 20,
-              max: 32,
-            ),
+    return BlocBuilder<AuthBloc, AuthState>(
+      builder: (context, state) {
+        return DrawerHeader(
+          decoration: BoxDecoration(
+            color: context.colorScheme.primaryContainer,
           ),
-          const SizedBox(height: 8),
-          Text(
-            'Welcome!',
-            style: context.responsiveTextTheme.bodyLarge,
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              // User Avatar
+              CircleAvatar(
+                radius: 30,
+                backgroundColor: context.colorScheme.primary,
+                child: Text(
+                  state is Authenticated
+                      ? (state.user.displayName?[0].toUpperCase() ??
+                          state.user.email[0].toUpperCase())
+                      : '?',
+                  style: context.responsiveTextTheme.headlineMedium?.copyWith(
+                    color: context.colorScheme.onPrimary,
+                  ),
+                ),
+              ),
+              const SizedBox(height: 12),
+
+              // User Name
+              if (state is Authenticated && state.user.displayName != null)
+                Text(
+                  state.user.displayName!,
+                  style: context.responsiveTextTheme.titleLarge?.copyWith(
+                    fontWeight: FontWeight.bold,
+                  ),
+                  overflow: TextOverflow.ellipsis,
+                ),
+
+              // User Email
+              if (state is Authenticated)
+                Text(
+                  state.user.email,
+                  style: context.responsiveTextTheme.bodyMedium?.copyWith(
+                    color: context.colorScheme.onSurfaceVariant,
+                  ),
+                  overflow: TextOverflow.ellipsis,
+                ),
+            ],
           ),
-        ],
-      ),
+        );
+      },
     );
   }
 

@@ -5,7 +5,7 @@ import '../models/user_model.dart';
 import '../data/firebase_auth_service.dart';
 import '../data/firestore_service.dart';
 
-abstract class IAuthRepository {
+abstract class AuthRepository {
   Future<Either<AuthFailure, UserModel>> signInWithEmailAndPassword(
       String email, String password);
   Future<Either<AuthFailure, UserModel>> registerWithEmailAndPassword(
@@ -15,11 +15,11 @@ abstract class IAuthRepository {
   Stream<UserModel?> get currentUser;
 }
 
-class AuthRepository implements IAuthRepository {
+class AuthRepositoryImpl implements AuthRepository {
   final FirebaseAuthService _authService;
   final FirestoreService _firestoreService;
 
-  AuthRepository(this._authService, this._firestoreService);
+  AuthRepositoryImpl(this._authService, this._firestoreService);
 
   @override
   Future<Either<AuthFailure, UserModel>> signInWithEmailAndPassword(

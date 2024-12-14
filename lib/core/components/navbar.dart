@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:x_clone/core/extensions/context_extensions.dart';
 import 'package:x_clone/core/utils/navbar_utils.dart';
 import 'package:x_clone/ui/home/home_page.dart';
+import 'package:x_clone/ui/profile/profile_page.dart';
 
 class Navbar extends StatefulWidget {
   const Navbar({
@@ -35,7 +36,7 @@ class _NavbarState extends State<Navbar> {
         const HomePage(),
         const HomePage(),
         const HomePage(),
-        const HomePage(),
+        const ProfilePage(),
       ][selectedIndex],
     );
   }

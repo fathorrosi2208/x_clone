@@ -18,12 +18,12 @@ List<BottomNavigationBarItem> appBarDestinations = [
   const BottomNavigationBarItem(
     tooltip: '',
     icon: Icon(
-      Icons.favorite_border,
+      Icons.notifications,
     ),
     activeIcon: Icon(
-      Icons.favorite,
+      Icons.notifications_active_rounded,
     ),
-    label: 'Favorites',
+    label: 'Notifications',
   ),
   const BottomNavigationBarItem(
     tooltip: '',

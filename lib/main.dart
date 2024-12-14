@@ -17,6 +17,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hydrated_bloc/hydrated_bloc.dart';
 import 'package:x_clone/bloc/auth_bloc.dart';
+import 'package:x_clone/bloc/tweet_bloc.dart';
 import 'package:x_clone/core/core.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -61,6 +62,7 @@ class MyApp extends StatelessWidget {
               getIt<AuthBloc>()..add(const AuthEvent.authCheckRequested()),
           lazy: false,
         ),
+        BlocProvider(create: (context) => getIt<TweetBloc>()),
       ],
       child: BlocBuilder<ThemeCubit, ThemeState>(
         builder: (context, state) {
